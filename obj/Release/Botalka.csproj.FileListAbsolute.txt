@@ -1,0 +1,10 @@
+C:\Users\Buraindo\source\repos\Botalka\Botalka\bin\Release\Botalka.exe.config
+C:\Users\Buraindo\source\repos\Botalka\Botalka\bin\Release\Botalka.exe
+C:\Users\Buraindo\source\repos\Botalka\Botalka\bin\Release\Botalka.pdb
+C:\Users\Buraindo\source\repos\Botalka\Botalka\obj\Release\Botalka.Form1.resources
+C:\Users\Buraindo\source\repos\Botalka\Botalka\obj\Release\Botalka.Properties.Resources.resources
+C:\Users\Buraindo\source\repos\Botalka\Botalka\obj\Release\Botalka.csproj.GenerateResource.Cache
+C:\Users\Buraindo\source\repos\Botalka\Botalka\obj\Release\Botalka.csproj.CoreCompileInputs.cache
+C:\Users\Buraindo\source\repos\Botalka\Botalka\obj\Release\Botalka.exe
+C:\Users\Buraindo\source\repos\Botalka\Botalka\obj\Release\Botalka.pdb
+C:\Users\Buraindo\source\repos\Botalka\Botalka\obj\Release\Botalka.csprojResolveAssemblyReference.cache
