@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing.Imaging;
 using System.IO;
-using System.Security;
-using System.Security.Permissions;
 using System.Windows.Forms;
 using System.Net;
 using System.Runtime.InteropServices;
@@ -11,13 +8,22 @@ using System.Text;
 
 namespace Botalka
 {
+    public class Wrapper : IWin32Window
+    {
+        public Wrapper(IntPtr handle)
+        {
+            Handle = handle;
+        }
+
+        public IntPtr Handle { get; }
+    }
     public class BotalkaProgram
     {
         [DllImport("user32.dll")]
-        static extern int GetForegroundWindow();
+        static extern IntPtr GetForegroundWindow();
 
         [DllImport("user32.dll")]
-        static extern int GetWindowText(int hWnd, StringBuilder text, int count);
+        static extern IntPtr GetWindowText(IntPtr hWnd, StringBuilder text, int count);
 
         private DateTime startTime;
         private DateTime time;
@@ -31,6 +37,7 @@ namespace Botalka
         {
             startTime = DateTime.Now;
             time = startTime;
+            
             var path = Environment.ExpandEnvironmentVariables("%AppData%\\Botalka");
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
@@ -52,7 +59,7 @@ namespace Botalka
                     time = startTime.AddHours(4);
                     break;
                 case "test":
-                    time = startTime.AddSeconds(24);
+                    time = startTime.AddSeconds(60);
                     break;
                 default:
                     MessageBox.Show("Выбери время работы");
@@ -79,10 +86,12 @@ namespace Botalka
                 form.button1.Enabled = false;
                 while (true)
                 {
+                    var window = GetForegroundWindow();
+                    
                     GetWindowText(GetForegroundWindow(), builder, 255);
                     if (builder.ToString().Equals("Диспетчер задач") || builder.ToString().Equals("Task manager"))
                     {
-                        MessageBox.Show("Эй, нормально же общались, сверни это окошечко и продолжай ботать");
+                        MessageBox.Show(new Wrapper(window), "Эй, нормально же общались, закрой это опасное окошечко и продолжай ботать, закрыть диспетчер ты можешь путем нажатия правой кнопки мыши на значок диспетчера в трее", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                     var diff = time.Hour >= DateTime.Now.Hour ? (time.Hour * 60 + time.Minute) * 60 + time.Second -
                                ((DateTime.Now.Hour * 60 + DateTime.Now.Minute) * 60 + DateTime.Now.Second) : ((time.Hour + 24) * 60 + time.Minute) * 60 + time.Second -

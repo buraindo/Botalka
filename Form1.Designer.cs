@@ -52,7 +52,8 @@
             "1 час",
             "2 часа",
             "3 часа",
-            "4 часа"});
+            "4 часа",
+            "test"});
             this.comboBox1.Location = new System.Drawing.Point(86, 96);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(404, 28);
@@ -72,7 +73,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(201, 237);
+            this.label1.Location = new System.Drawing.Point(201, 240);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(156, 20);
             this.label1.TabIndex = 5;
